@@ -51,7 +51,7 @@ object MainForm: TMainForm
     Width = 404
     Height = 62
     Anchors = [akLeft, akTop, akRight]
-    Caption = ' Folder zawieraj¹cy pliki Ÿród³owe '
+    Caption = ' Source folder 
     TabOrder = 1
     object Label1: TLabel
       Left = 7
@@ -59,8 +59,7 @@ object MainForm: TMainForm
       Width = 327
       Height = 13
       Caption = 
-        'Wska¿ folder Ÿród³owy, w którym znajduj¹ siê pliki graficzne (*.' +
-        'jpg):'
+        'Pick a source folder, containing *.jpg files...'
       WordWrap = True
     end
     object eSourceFolder: TEdit
@@ -88,7 +87,7 @@ object MainForm: TMainForm
     Width = 404
     Height = 62
     Anchors = [akLeft, akTop, akRight]
-    Caption = ' Folder, w którym maj¹ byæ umieszczone pliki docelowe '
+    Caption = ' Destination folder '
     TabOrder = 2
     object Label2: TLabel
       Left = 7
@@ -96,8 +95,8 @@ object MainForm: TMainForm
       Width = 375
       Height = 13
       Caption = 
-        'Wska¿ folder docelowy, w którym nale¿y umieœciæ pliki docelowe (' +
-        '*.jpg i *.gif):'
+        'Pick a destination folder, where converted *.gif and *.jpg files' +
+        ' will be put:'
       WordWrap = True
     end
     object eDestinationFolder: TEdit
@@ -124,12 +123,12 @@ object MainForm: TMainForm
     Top = 234
     Width = 200
     Height = 76
-    Caption = ' Zmiana nazwy '
+    Caption = ' Filename change '
     ItemIndex = 0
     Items.Strings = (
-      'Automatyczna korekta nazwy pliku'
-      'Wed³ug sugestii u¿ytkownika'
-      'Brak korekty nazwy pliku')
+      'Correct filename automatically'
+      'Ask user for a filename'
+      'Do not change filenames')
     ParentShowHint = False
     ShowHint = True
     TabOrder = 4
@@ -140,7 +139,7 @@ object MainForm: TMainForm
     Top = 234
     Width = 199
     Height = 76
-    Caption = ' Jakoœæ pliku *.jpg '
+    Caption = ' JPEG file quality '
     TabOrder = 6
     object Label3: TLabel
       Left = 7
@@ -148,7 +147,7 @@ object MainForm: TMainForm
       Width = 164
       Height = 26
       AutoSize = False
-      Caption = 'Stosunek jakoœci tworzonego pliku graficznego do jego rozmiaru:'
+      Caption = 'Quality-to-filesize ratio for created file'
       WordWrap = True
     end
     object seJPEGRatio: TRVSpinEdit
@@ -156,9 +155,7 @@ object MainForm: TMainForm
       Top = 46
       Width = 56
       Height = 22
-      Hint = 
-        'Jakoœæ JPEG#Okreœla stosunek jakoœci do rozmiaru tworzonego plik' +
-        'u graficznego. Jakoœæ: 1 - najgorsza, 100 - najlepsza'
+      Hint = 'JPEG quality#1 - lowest quality, smallest filesize, 100 - opposite'
       Increment = 5
       MaxValue = 100
       MinValue = 1
@@ -175,24 +172,22 @@ object MainForm: TMainForm
     Top = 312
     Width = 199
     Height = 66
-    Caption = ' Numeracja plików '
+    Caption = ' Files numbering '
     TabOrder = 7
     object Label4: TLabel
       Left = 8
       Top = 40
       Width = 91
       Height = 13
-      Caption = 'Zacznij od numeru:'
+      Caption = 'Start from:'
     end
     object chbAddNumbers: TCheckBox
       Left = 8
       Top = 16
       Width = 126
       Height = 17
-      Hint = 
-        'Numeracja plików#Okreœla, czy nazwy tworzonych plików oprócz zam' +
-        'iany maj¹ byæ dodatkowo numerowane'
-      Caption = 'Numeruj tworzone pliki'
+      Hint = ''
+      Caption = 'Add number to each filename'
       Checked = True
       ParentShowHint = False
       ShowHint = True
@@ -205,9 +200,7 @@ object MainForm: TMainForm
       Top = 36
       Width = 86
       Height = 22
-      Hint = 
-        'Numer pierwszego pliku#Okreœl numer jaki zostanie nadany pierwsz' +
-        'emu plikowi w grupie plików'
+      Hint = 'Set number for first created filename'
       Increment = 5
       MaxValue = 100000
       MinValue = 1
@@ -224,7 +217,7 @@ object MainForm: TMainForm
     Top = 312
     Width = 200
     Height = 66
-    Caption = ' Regu³y korekty nazwy '
+    Caption = ' File rename rules '
     TabOrder = 5
     object Label5: TLabel
       Left = 8
@@ -232,7 +225,7 @@ object MainForm: TMainForm
       Width = 184
       Height = 30
       AutoSize = False
-      Caption = 'Aby zmieniæ regu³y korekty, kliknij po- ni¿szy klawisz:'
+      Caption = 'Click below button to set file rename rules:'
       WordWrap = True
     end
     object btnSetParameters: TButton
@@ -240,9 +233,7 @@ object MainForm: TMainForm
       Top = 40
       Width = 92
       Height = 20
-      Hint = 
-        'Regu³y korekty#Kliknij, aby okreœliæ regu³y wed³ug których progr' +
-        'am dokonuje automatycznej korekty nazwy'
+      Hint = ''
       Caption = 'Regu³y korekty'
       ParentShowHint = False
       ShowHint = True
@@ -255,10 +246,8 @@ object MainForm: TMainForm
     Top = 382
     Width = 124
     Height = 25
-    Hint = 
-      'Rozpocznij teraz!#Kliknij aby rozpocz¹æ automatyczn¹ zamianê pli' +
-      'ków, z uwzglêdnieniem okreœlonych powy¿ej parametrów'
-    Caption = 'Rozpocznij teraz!'
+    Hint = ''
+    Caption = 'Start!'
     Font.Charset = EASTEUROPE_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -285,10 +274,8 @@ object MainForm: TMainForm
     Top = 382
     Width = 124
     Height = 25
-    Hint = 
-      'O programie...#Kliknij, aby wyœwietliæ informacje o tym programi' +
-      'e'
-    Caption = 'O programie...'
+    Hint = ''
+    Caption = 'About'
     ParentShowHint = False
     ShowHint = True
     TabOrder = 9
@@ -299,35 +286,35 @@ object MainForm: TMainForm
     Top = 136
     Width = 404
     Height = 97
-    Caption = ' Zakres wykonywanych operacji '
+    Caption = ' Range of operations '
     TabOrder = 3
     object Label6: TLabel
       Left = 8
       Top = 40
       Width = 46
       Height = 13
-      Caption = 'Wymiary:'
+      Caption = 'Dimensions:'
     end
     object Label7: TLabel
       Left = 216
       Top = 40
       Width = 46
       Height = 13
-      Caption = 'Wymiary:'
+      Caption = 'Dimensions:'
     end
     object lblPixelMini: TLabel
       Left = 120
       Top = 40
       Width = 58
       Height = 13
-      Caption = 'x 120 pikseli'
+      Caption = 'x 120 pixels'
     end
     object lblPixelMaxi: TLabel
       Left = 328
       Top = 40
       Width = 58
       Height = 13
-      Caption = 'x 400 pikseli'
+      Caption = 'x 400 pixels'
     end
     object Label8: TLabel
       Left = 8
@@ -336,9 +323,8 @@ object MainForm: TMainForm
       Height = 28
       AutoSize = False
       Caption = 
-        '¯aden z plików Ÿród³owych nie zostanie zmieniony. Wszystkie oper' +
-        'acjê s¹ wyko- nywane na nowych plikach, tworzonych we wskazanym ' +
-        'folderze docelowym.'
+        'None of the source files will be changed. All operations are per' +
+        'formed only on newly created files, in destination folder. Amen!'
       WordWrap = True
     end
     object chbMini: TCheckBox
@@ -346,7 +332,7 @@ object MainForm: TMainForm
       Top = 16
       Width = 129
       Height = 17
-      Caption = 'Twórz miniaturê (*.gif)'
+      Caption = 'Create miniature (*.gif)'
       TabOrder = 0
       OnClick = chbMiniClick
     end
@@ -355,7 +341,7 @@ object MainForm: TMainForm
       Top = 16
       Width = 161
       Height = 17
-      Caption = 'Zmieñ rozmiar obrazka (*.jpg)'
+      Caption = 'Change image size (*.jpg)'
       TabOrder = 2
       OnClick = chbMainClick
     end
@@ -365,9 +351,8 @@ object MainForm: TMainForm
       Width = 56
       Height = 22
       Hint = 
-        'Wymiary miniatury#D³u¿szy bok obrazu docelowego bêdzie mia³ ten ' +
-        'wymiar, a bok krótszy zostanie zmniejszony z zachowaniem orygina' +
-        'lnego stosunku wymiarów'
+        'Longer side of created destination file will have this size. Sho' +
+        'rter side will be resized respecting original image ratio.'
       Increment = 5
       MaxValue = 1000
       MinValue = 1
@@ -385,9 +370,8 @@ object MainForm: TMainForm
       Width = 56
       Height = 22
       Hint = 
-        'Wymiary obrazka#D³u¿szy bok obrazu docelowego bêdzie mia³ ten wy' +
-        'miar, a bok krótszy zostanie zmniejszony z zachowaniem oryginaln' +
-        'ego stosunku wymiarów'
+        'Longer side of created destination file will have this size. Sho' +
+        'rter side will be resized respecting original image ratio.'
       Increment = 5
       MaxValue = 10000
       MinValue = 1
@@ -403,20 +387,16 @@ object MainForm: TMainForm
   object fdSource: TFolderDialog
     Top = 52
     Left = 12
-    Title = 'Wska¿ folder'
-    Text = 
-      'Wska¿ folder Ÿród³owy, w którym znajduj¹ siê pliki graficzne (*.' +
-      'jpg) przeznaczone do automatycznej redukcji wymiarów:'
+    Title = 'Select a folder'
+    Text = 'Pick a source folder:'
     Options = [bfFileSysDirsOnly, bfStatusText, bfShowPathInStatusArea, bfSyncCustomButton, bfAlignCustomButton, bfScreenCenter]
     RootFolder = sfoMyComputer
   end
   object fdDestination: TFolderDialog
     Top = 52
     Left = 44
-    Title = 'Wska¿ folder'
-    Text = 
-      'Wska¿ folder docelowy, w którym nale¿y umieœciæ pliki docelowe (' +
-      '*.jpg i *.gif), po redukcji wymiarów:'
+    Title = 'Select a folder'
+    Text = 'Pick a destination folder:'
     Options = [bfFileSysDirsOnly, bfStatusText, bfShowPathInStatusArea, bfSyncCustomButton, bfAlignCustomButton, bfScreenCenter]
     RootFolder = sfoMyComputer
   end

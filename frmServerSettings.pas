@@ -41,7 +41,7 @@ begin
         if eCharRepleace.Text[1] in ['/','\',':','*','?','"','<','>','|'] then
         begin
                 eCharRepleace.Text:='';
-                Application.MessageBox('Wprowadzony znak jest nieprawid³owy. Nazwa pliku nie mo¿e zawieraæ ¿adnego z nastêpuj¹cych znaków: / \ : * ? " < > |','Ostrze¿enie...',MB_OK+MB_ICONWARNING+MB_DEFBUTTON1);
+                Application.MessageBox('An incorrect character! Filname cannot contain any of these characters: / \ : * ? " < > |','Warning...',MB_OK+MB_ICONWARNING+MB_DEFBUTTON1);
         end;
 end;
 

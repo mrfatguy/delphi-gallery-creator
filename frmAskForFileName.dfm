@@ -3,7 +3,7 @@ object AskForFileName: TAskForFileName
   Top = 80
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Podaj now¹ nazwê pliku...'
+  Caption = 'Provide a file name...'
   ClientHeight = 201
   ClientWidth = 474
   Color = clBtnFace
@@ -24,9 +24,9 @@ object AskForFileName: TAskForFileName
     Height = 28
     AutoSize = False
     Caption = 
-      'Podaj nazwê dla pliku *.jpg. W przypadku plików typu GIF zostani' +
-      'e u¿yta ta sama nazwa, któr¹ podano - zmianie ulegnie tylko rozs' +
-      'zerzenie tworzonego pliku.'
+      'Provide a *.jpg filename. In case of GIF-type files the same pro' +
+      'vided name will be used, only extension of created file will be ' +
+      'different'
     WordWrap = True
   end
   object btnCancel: TBitBtn
@@ -34,7 +34,7 @@ object AskForFileName: TAskForFileName
     Top = 168
     Width = 160
     Height = 25
-    Caption = 'Przerwij proces'
+    Caption = 'Abort operation'
     ParentShowHint = False
     ShowHint = False
     TabOrder = 3
@@ -45,7 +45,7 @@ object AskForFileName: TAskForFileName
     Top = 8
     Width = 460
     Height = 70
-    Caption = ' Zamieniany plik '
+    Caption = ' Processed file '
     TabOrder = 1
     object Label1: TLabel
       Left = 8
@@ -54,7 +54,7 @@ object AskForFileName: TAskForFileName
       Height = 13
       Alignment = taRightJustify
       AutoSize = False
-      Caption = 'Plik nr:'
+      Caption = 'File no:'
     end
     object Label2: TLabel
       Left = 8
@@ -63,7 +63,7 @@ object AskForFileName: TAskForFileName
       Height = 13
       Alignment = taRightJustify
       AutoSize = False
-      Caption = 'Œcie¿ka dostêpu:'
+      Caption = 'Path:'
     end
     object Label3: TLabel
       Left = 8
@@ -72,7 +72,7 @@ object AskForFileName: TAskForFileName
       Height = 13
       Alignment = taRightJustify
       AutoSize = False
-      Caption = 'Oryginalna nazwa:'
+      Caption = 'Original name:'
     end
     object lblNum: TLabel
       Left = 102
@@ -80,7 +80,7 @@ object AskForFileName: TAskForFileName
       Width = 352
       Height = 13
       AutoSize = False
-      Caption = '0 z 0'
+      Caption = '0 of 0'
       Font.Charset = EASTEUROPE_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -94,7 +94,7 @@ object AskForFileName: TAskForFileName
       Top = 32
       Width = 352
       Height = 13
-      Hint = 'Œcie¿ka dostêpu:#C:\'
+      Hint = ''
       AutoSize = False
       Caption = 'C:\'
       Font.Charset = EASTEUROPE_CHARSET
@@ -113,7 +113,7 @@ object AskForFileName: TAskForFileName
       Width = 352
       Height = 13
       AutoSize = False
-      Caption = 'NazwaPliku.jpg'
+      Caption = 'Filename.jpg'
       Font.Charset = EASTEUROPE_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -128,7 +128,7 @@ object AskForFileName: TAskForFileName
     Top = 80
     Width = 460
     Height = 41
-    Caption = ' Zamieñ nazwê '
+    Caption = ' Change name '
     TabOrder = 2
     object Label4: TLabel
       Left = 8
@@ -136,7 +136,7 @@ object AskForFileName: TAskForFileName
       Width = 104
       Height = 13
       AutoSize = False
-      Caption = 'Proponowana nazwa:'
+      Caption = 'Suggested name:'
     end
     object eNewName: TEdit
       Left = 114
@@ -151,7 +151,7 @@ object AskForFileName: TAskForFileName
     Top = 168
     Width = 160
     Height = 25
-    Caption = 'Zmieñ nazwê i kontynuuj'
+    Caption = 'Rename and continue'
     Default = True
     ModalResult = 1
     ParentShowHint = False

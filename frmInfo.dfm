@@ -2,7 +2,7 @@ object Info: TInfo
   Left = 191
   Top = 79
   BorderStyle = bsNone
-  Caption = 'O programie...'
+  Caption = 'About...'
   ClientHeight = 194
   ClientWidth = 515
   Color = clBtnFace
@@ -36,8 +36,7 @@ object Info: TInfo
       Height = 13
       Alignment = taCenter
       Caption = 
-        'Copyright © 2001- 2003 by trejderowski.com. Wszelkie prawa zastr' +
-        'ze¿one!'
+        'Copyright © 2001-2003 by Tomasz Trejderowski (gaman.pl)'
       Font.Charset = EASTEUROPE_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -52,7 +51,7 @@ object Info: TInfo
       Width = 384
       Height = 13
       Alignment = taCenter
-      Caption = 'Ten program jest rozpowszechniany na zasadach licencji freeware.'
+      Caption = 'This program is shipped under MIT License conditions.'
       Font.Charset = EASTEUROPE_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -68,8 +67,7 @@ object Info: TInfo
       Height = 59
       Cursor = crHandPoint
       Hint = 
-        'trejderowski.com#Kliknij, aby odwiedziæ nasz¹ stronê internetow¹' +
-        '...'
+        'Click to visit our website (currently: gaman.pl)'
       AutoSize = True
       ParentShowHint = False
       Picture.Data = {

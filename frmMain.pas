@@ -114,24 +114,22 @@ var
 begin
         if (not chbMini.Checked) and (not chbMain.Checked) then
         begin
-                Application.MessageBox('Zaznacz przynajmniej jedn¹ opcjê - tworzenie miniatury lub zmianê wymiarów obrazka.','Informacja...',MB_OK+MB_ICONINFORMATION+MB_DEFBUTTON1);
+                Application.MessageBox('You must select at least one option -- either to create miniature or resize image.','Info...',MB_OK+MB_ICONINFORMATION+MB_DEFBUTTON1);
                 exit;
         end;
-        //Poprawka
         PutPathToEdit(eSourceFolder, IncludeTrailingBackslash(eSourceFolder.Text));
         PutPathToEdit(eDestinationFolder, IncludeTrailingBackslash(eDestinationFolder.Text));
 
         iCount:=0;
 
-        //Sprawdzenie
         if not DirectoryExists(eSourceFolder.Text) then
         begin
-                Application.MessageBox('Wskazany folder Ÿród³owy nie istnieje!','Ostrze¿enie!',MB_OK+MB_ICONWARNING+MB_DEFBUTTON1);
+                Application.MessageBox('Source folder does not exists!','Warning!',MB_OK+MB_ICONWARNING+MB_DEFBUTTON1);
                 exit;
         end;
         if not DirectoryExists(eDestinationFolder.Text) then
         begin
-                if Application.MessageBox('Wskazany folder docelowy nie istnieje. Utworzyæ ???','Pytanie...',MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON2)=ID_NO then exit;
+                if Application.MessageBox('Destination folder does not exists! Create it ???','Question...',MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON2)=ID_NO then exit;
                 ForceDirectories(eDestinationFolder.Text);
         end;
 
@@ -140,7 +138,7 @@ begin
                 Application.MessageBox('Wskazany folder Ÿród³owy nie zawiera ¿adnego pliku o rozszerzeniu *.jpg!','Ostrze¿enie!',MB_OK+MB_ICONWARNING+MB_DEFBUTTON1);
                 exit;
         end;
-        if CountFiles(eDestinationFolder.Text,'*.*')>0 then if Application.MessageBox(PChar('Wskazany folder docelowy zawiera pliki. Proces zamiany automatycznej wymaga, aby folder docelowy by³ pusty. Wszystkie pliki w folderze docelowym zostan¹ trwale usuniête!'+chr(13)+''+chr(13)+'Kontynuowaæ ???'),'Pytanie...',MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON2)=ID_NO then exit;
+        if CountFiles(eDestinationFolder.Text,'*.*')>0 then if Application.MessageBox(PChar('Destination folder contains some files. This program requires to make it empty before proceeding. All files in destination folder will be removed. This CANNOT be undone!'+chr(13)+''+chr(13)+'Continue ???'),'Question...',MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON2)=ID_NO then exit;
 
         Screen.Cursor:=crHourglass;
         btnGo.Enabled:=False;
@@ -161,7 +159,6 @@ begin
 
         for b:=0 to flb.Items.Count-1 do
         begin
-                //Nazwa pliku
                 fName:=flb.Items.Strings[b];
                 case rgNameChangeMode.ItemIndex of
                         0:
@@ -173,13 +170,13 @@ begin
                         begin
                                 AskForFileName.lblNum.Caption:=IntToStr(b+1)+ ' / ' + IntToStr(flb.Items.Count);
                                 AskForFileName.lblPath.Caption:=eSourceFolder.Text;
-                                AskForFileName.lblPath.Hint:='Œcie¿ka dostêpu:#'+eSourceFolder.Text;
+                                AskForFileName.lblPath.Hint:='Path:#'+eSourceFolder.Text;
                                 AskForFileName.lblFileName.Caption:=fName;
                                 if chbAddNumbers.Checked then AskForFileName.eNewName.Text:=AddNumbering(b+iFirstNum)+'_'+ChangeFileName(fName) else AskForFileName.eNewName.Text:=ChangeFileName(fName);
                                 if AskForFileName.ShowModal=mrCancel then
                                 begin
                                         pbProgress.Position:=1;
-                                        AddLogInfo('Operacja zamiany zosta³a przerwana...');
+                                        AddLogInfo('Processing aborted...');
                                         Screen.Cursor:=crDefault;
                                         btnGo.Enabled:=True;
                                         exit;
@@ -201,14 +198,14 @@ begin
                         if not WasOK then
                         begin
                                 pbProgress.Position:=1;
-                                AddLogInfo('Wyst¹pi³ b³¹d podczas operacji zamiany!');
-                                Application.MessageBox('Wyst¹pi³ b³¹d podczas tej operacji!','Ostrze¿enie...',MB_OK+MB_ICONWARNING+MB_DEFBUTTON1);
+                                AddLogInfo('Error during processing of files!');
+                                Application.MessageBox('There was an error during this operation! Sorry','Warning...',MB_OK+MB_ICONWARNING+MB_DEFBUTTON1);
                                 Screen.Cursor:=crDefault;
                                 btnGo.Enabled:=True;
                                 exit;
                         end;
                         Inc(iCount);
-                        AddLogInfo('Utworzono plik: '+cName);
+                        AddLogInfo('Create file: '+cName);
                 end;
 
                 //Zrob GIF
@@ -219,19 +216,19 @@ begin
                         if not WasOK then
                         begin
                                 pbProgress.Position:=1;
-                                AddLogInfo('Wyst¹pi³ b³¹d podczas operacji zamiany!');
-                                        Application.MessageBox('Wyst¹pi³ b³¹d podczas tej operacji!','Ostrze¿enie...',MB_OK+MB_ICONWARNING+MB_DEFBUTTON1);
-                                        btnGo.Enabled:=True;
-                                        Screen.Cursor:=crDefault;
-                                        exit;
+                                AddLogInfo('Error during JPEG-to-GIF conversion!');
+                                Application.MessageBox('There was an error during JPEG-to-GIF conversion!','Warning...',MB_OK+MB_ICONWARNING+MB_DEFBUTTON1);
+                                btnGo.Enabled:=True;
+                                Screen.Cursor:=crDefault;
+                                exit;
                         end;
                         Inc(iCount);
-                        AddLogInfo('Utworzono plik: '+cName);
+                        AddLogInfo('Created file: '+cName);
                 end;
                 pbProgress.Position:=b;
         end;
         pbProgress.Position:=1;
-        AddLogInfo('Liczba zamienionych plików graficznych: '+IntToStr(iCount));
+        AddLogInfo('No of changed files: '+IntToStr(iCount));
         Screen.Cursor:=crDefault;
         btnGo.Enabled:=True;
 end;
@@ -246,7 +243,7 @@ begin
         begin
                 if DirectoryExists(Path) then
                 begin
-                        (Control as TEdit).Hint:='Wybrany katalog Ÿród³owy:#'+Path;
+                        (Control as TEdit).Hint:='Source folder:#'+Path;
                         fdSource.Directory:=Path;
                 end;
         end
@@ -254,7 +251,7 @@ begin
         begin
                 if DirectoryExists(Path) then
                 begin
-                        (Control as TEdit).Hint:='Wybrany katalog docelowy:#'+Path;
+                        (Control as TEdit).Hint:='Destination folder:#'+Path;
                         fdDestination.Directory:=Path;
                 end;
         end;
@@ -322,12 +319,12 @@ end;
 
 procedure TMainForm.rvsMiniSizeChange(Sender: TObject);
 begin
-        lblPixelMini.Caption:='x '+IntToStr(Trunc(rvsMiniSize.Value))+' pikseli';
+        lblPixelMini.Caption:='x '+IntToStr(Trunc(rvsMiniSize.Value))+' pixels';
 end;
 
 procedure TMainForm.rvsMainSizeChange(Sender: TObject);
 begin
-        lblPixelMaxi.Caption:='x '+IntToStr(Trunc(rvsMainSize.Value))+' pikseli';
+        lblPixelMaxi.Caption:='x '+IntToStr(Trunc(rvsMainSize.Value))+' pixels';
 end;
 
 end.
