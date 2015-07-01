@@ -1,0 +1,13 @@
+GS_CharRepleace=_
+GS_WordSpace=0
+GS_NationalLetters=1
+GS_BreakSigns=0
+GS_FirstCapitalLetter=1
+GASR_UseAutomation=2
+GASR_JPEGCompressionRatio=77
+GASR_FirstBoon=1
+GASR_AddNumbers=0
+GASR_MakeMini=0
+GASR_MakeMaxi=1
+GASR_MiniSize=77
+GASR_MaxiSize=1024
